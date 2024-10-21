@@ -1,0 +1,56 @@
+﻿@model laptrinhweb.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Xóa sản phẩm</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+          Tên sản phẩm 
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            Mô tả sản phẩm
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDecription)
+        </dd>
+        <dt>
+           Giá sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt>
+          Hình ảnh
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductImage)
+        </dd>
+        <dt>
+           Danh mục sản phẩm
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+   
+    </dl>
+    <h3>Bạn có chắc chắn muốn xóa sản phẩm không?</h3>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Xóa" class="btn btn-primary btn-sm" />
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-primary btn-sm" })
+</div>
+    }
+</div>

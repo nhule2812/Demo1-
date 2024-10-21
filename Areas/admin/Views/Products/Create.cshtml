@@ -1,0 +1,83 @@
+﻿@model laptrinhweb.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <style>
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px 5px;
+            box-sizing: border-box;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            background-color: white;
+            resize: none;
+        }
+    </style>
+</head>
+
+<h2>Thêm mới sản phẩm</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true,"", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryID, "Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Tên sản phẩm *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName,"Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Mô tả sản phẩm *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDecription,"Mô tả sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDecription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDecription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Giá sản phẩm *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductPrice,"Giá sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Hình ảnh *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImage,"Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductImage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo sản phẩm" class="btn btn-primary btn-sm" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-primary btn-sm" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

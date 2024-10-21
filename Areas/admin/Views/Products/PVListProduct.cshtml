@@ -1,0 +1,60 @@
+﻿@model laptrinhweb.Models.ViewModel.ProductSearchVM
+<head>
+    <style>
+        img {
+            height: 150px;
+            max-width: 150px;
+        }
+    </style>
+</head>
+
+@* Hiển thị danh sách sản phẩm *@
+@if (Model.Products != null && Model.Products.Any())
+{
+    <h2>Danh sách sản phẩm</h2>
+
+    <table class="table col-md-6">
+        <tr>
+            <th class="col-md-1">
+                Hình ảnh
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Danh mục
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>
+                    <img src=" @Html.DisplayFor(modelItem => product.ProductImage)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "Edit", new { id = product.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Chi tiết", "Details", new { id = product.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = product.ProductID }, new { @class = "btn btn-primary btn-sm" })
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Không tìm được sản phẩm  nào phù hợp </p>
+}
+@Html.ActionLink("Thêm mới ", "Create", null, new { @class = "btn btn-primary" })

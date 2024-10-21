@@ -1,0 +1,26 @@
+﻿@model laptrinhweb.Models.Category
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Cập nhật danh mục</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.CategoryID)
+
+    @*nhúng Patial View vào form cha*@
+    @Html.Partial("PVCreateEditCategory", Model)
+</div>
+}
+
+
